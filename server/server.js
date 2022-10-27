@@ -29,6 +29,8 @@ app.post("/todos", (req, res) => {
   );
 });
 
+module.exports = { app };
+
 // const newTodo = new Todo({
 //   text: "Cook dinner",
 // });
