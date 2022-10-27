@@ -51,4 +51,5 @@ const addUser = (name, age = "unknown", location = "unknown") =>
   );
 
 //addUser("Andrea", "28", "Milano");
-addTodo("Learn Node.js and MondoDB - part 1", true);
+//addTodo("Learn Node.js and MondoDB - part 1", true);
+addTodo("Something to do");
