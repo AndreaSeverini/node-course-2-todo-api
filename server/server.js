@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const { mongoose } = require("./db/mongoose");
 const { Todo } = require("./models/todo");
 const { User } = require("./models/user");
+const { ObjectId } = require("mongodb");
 
 //Express Application initialization
 const app = express();
@@ -21,6 +22,27 @@ app.get("/todos", (req, res) => {
       res.status(400).send(e);
     }
   );
+});
+
+app.get("/todos/:id", (req, res) => {
+  const id = req.params.id;
+  if (!ObjectId.isValid(id)) {
+    res.status(400).send({});
+    return console.log("The Id is not a valid one.");
+  }
+  Todo.findById(id)
+    .then((todo) => {
+      if (!todo) {
+        res.status(404).send({});
+        return console.log("The Id is not present.");
+      }
+      res.send({ todo });
+      return console.log("The Id is correctly send back.");
+    })
+    .catch((e) => {
+      res.status(400).send(e);
+      return;
+    });
 });
 
 //To send JSON to the application
