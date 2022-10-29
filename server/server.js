@@ -9,8 +9,11 @@ const { ObjectId } = require("mongodb");
 //Express Application initialization
 const app = express();
 
-app.listen(3000, () => {
-  console.log("Express Application started on port 3000");
+//PORT SETTING
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log("Express Application started on port ", port);
 });
 
 app.get("/todos", (req, res) => {
